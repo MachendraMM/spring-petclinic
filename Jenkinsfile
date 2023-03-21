@@ -16,7 +16,7 @@ stages{
             sh 'mvn clean install package'
         }
     }
-}
+
    // stage2 :Testing
     stage('Test'){
         steps {
@@ -25,3 +25,5 @@ stages{
     }
 }
 }
+
+
