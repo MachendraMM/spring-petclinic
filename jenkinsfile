@@ -22,7 +22,7 @@ stages{
         steps {
           sh ' mvn clean verify sonar:sonar \
   -Dsonar.projectKey=sonar-project \
-  -Dsonar.host.Name=sonarqube9.9.0 \
+  -Dsonar.host.url=http://13.233.93.197:9000 \
   -Dsonar.login=sqp_78060b2f1318c027d6bf87a5a3868163436b86b8'
         }
     }
