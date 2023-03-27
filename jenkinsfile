@@ -27,28 +27,7 @@ stages{
         }
       }
     }
-     stage('upload war to nexus'){
-         steps{
-            nexusArtifactUploader artfacts:[
-               [artifactId: '  spring-petclinic',
-                classifier: '',
-                file: 'target/  spring-petclinic-3.0.4.war',
-                 type: 'war'
-                ]
-            ],
-        credentialsId: 'nexus3',
-         groupId: 'org.springframework.boot',
-         nexusUrl: '13.234.20.45:8081',
-         nexusVersion: 'nexus3',
-          protocol: 'http',
-          repository: 'http://13.234.20.45:8081/repository/petclinic-app/',
-          version: '3.0.4',
-
-
-                  }
-            }
-           
-      
+            
       }
 }
 
