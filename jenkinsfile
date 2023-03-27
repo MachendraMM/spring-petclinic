@@ -34,7 +34,7 @@ echo 'This is for testing'
     }
      stage('upload war to nexus'){
          steps{
-          nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: '/target/spring-petclinic-3.0.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus3', groupId: 'org.springframework.boot', nexusUrl: "${NEXUSIP}:${NEXUSIP}", nexusVersion: 'nexus3', protocol: 'http', repository: 'petclinic-app', version: '4.0.0'
+          nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: 'target/spring-petclinic-3.0.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus3', groupId: 'org.springframework.boot', nexusUrl: "${NEXUSIP}:${NEXUSIP}", nexusVersion: 'nexus3', protocol: 'http', repository: 'petclinic-app', version: '4.0.0'
 
 
                   }
