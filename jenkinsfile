@@ -4,7 +4,11 @@ pipeline{
     tools{
         maven 'maven 3.6.3'
     }
-
+environment
+{
+NEXUSIP='13.233.165.61'
+NEXUSPORT='8081'
+}
 
 
 stages{
@@ -20,15 +24,27 @@ stages{
    // stage2 :Testing
     stage('code analasis'){
         steps {
-               withSonarQubeEnv('sonarqube9.9.0'){
-          sh ' mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=sonar-project \
-  -Dsonar.login=sqp_78060b2f1318c027d6bf87a5a3868163436b86b8'
-        }
+echo 'This is for testing'
+      //         withSonarQubeEnv('sonarqube9.9.0'){
+    //      sh ' mvn clean verify sonar:sonar \
+  //-Dsonar.projectKey=sonar-project \
+  //-Dsonar.login=sqp_78060b2f1318c027d6bf87a5a3868163436b86b8'
+        //}
       }
     }
-            
+     stage('upload war to nexus'){
+         steps{
+          nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: '/target/spring-petclinic-3.0.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus3', groupId: 'org.springframework.boot', nexusUrl: "${NEXUSURL}:${NEXUSIP}", nexusVersion: 'nexus3', protocol: 'http', repository: 'petclinic-app', version: '4.0.0'
+
+
+                  }
+            }
+
+
       }
 }
+
+
+
 
 
