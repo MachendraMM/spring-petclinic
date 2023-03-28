@@ -8,6 +8,10 @@ environment
 {
 NEXUSIP='13.233.165.61'
 NEXUSPORT='8081'
+registry = "myjenkinrepo"
+registryCredential = 'mycredintials'
+
+
 }
 
 
@@ -39,6 +43,14 @@ echo 'This is for testing'
 
               //    }
             //}
+stage('Building our image') {
+steps{
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
+
 
 
       }
