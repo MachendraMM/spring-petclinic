@@ -4,15 +4,15 @@ pipeline{
     tools{
         maven 'maven 3.6.3'
     }
-environment
-{
-NEXUSIP='13.233.165.61'
-NEXUSPORT='8081'
-registry = '752291249617.dkr.ecr.ap-south-1.amazonaws.com/myjenkinrepo'
-registryCredential = 'mycredintials'
+//environment
+//{
+//NEXUSIP='13.233.165.61'
+//NEXUSPORT='8081'
+//registry = '752291249617.dkr.ecr.ap-south-1.amazonaws.com/myjenkinrepo'
+//registryCredential = 'mycredintials'
 
 
-}
+//}
 
 
 stages{
@@ -26,16 +26,16 @@ stages{
     }
 
    // stage2 :Testing
-    stage('code analasis'){
-        steps {
-echo 'This is for testing'
+//    stage('code analasis'){
+  //      steps {
+//echo 'This is for testing'
       //         withSonarQubeEnv('sonarqube9.9.0'){
     //      sh ' mvn clean verify sonar:sonar \
   //-Dsonar.projectKey=sonar-project \
   //-Dsonar.login=sqp_78060b2f1318c027d6bf87a5a3868163436b86b8'
         //}
-      }
-    }
+  //    }
+    //}
     // stage('upload war to nexus'){
          //steps{
          // nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: 'target/spring-petclinic-3.0.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus3', groupId: 'org.springframework.boot', nexusUrl: "${NEXUSIP}:${NEXUSPORT}", nexusVersion: 'nexus3', protocol: 'http', repository: 'petclinic-app', version: '4.0.0'
@@ -43,22 +43,22 @@ echo 'This is for testing'
 
               //    }
             //}
-stage('Building our image') {
-steps{
-script {
-dockerImage = docker.build registry + ":$BUILD_NUMBER"
-}
-}
-}
-stage('Deploy Dimage to ECR') {
-steps{
-script {
-docker.withRegistry( "http://" + registry, "ecr:ap-south-1:" + registryCredential) {
-dockerImage.push()
-}
-}
-}
-}
+//stage('Building our image') {
+//steps{
+//script {
+//dockerImage = docker.build registry + ":$BUILD_NUMBER"
+//}
+//}
+//}
+//stage('Deploy Dimage to ECR') {
+//steps{
+//script {
+//docker.withRegistry( "http://" + registry, "ecr:ap-south-1:" + registryCredential) {
+//dockerImage.push()
+//}
+//}
+//}
+//}
 
 
       }
