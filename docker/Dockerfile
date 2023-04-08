@@ -1,3 +1,3 @@
-FROM openjdk:17.0.6-jdk
+FROM openjdk:17-jdk
 ADD *.jar app.jar
 ENTRYPOINT java -jar app.jar
